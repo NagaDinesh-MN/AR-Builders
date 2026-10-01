@@ -1,15 +1,20 @@
+import { motion } from "framer-motion";
 import Reveal from "./Reveal";
 import { impactStats } from "../data/content";
 import { useCountUp } from "../hooks/useCountUp";
 
 function Stat({ value, suffix, label }: { value: number; suffix: string; label: string }) {
-  const { ref, value: count } = useCountUp(value, 2000);
+  const { ref, value: count, done } = useCountUp(value, 2000);
   return (
     <div ref={ref}>
-      <div className="font-serif text-black text-[52px] md:text-[64px] leading-none">
+      <motion.div
+        className="font-serif text-black text-[52px] md:text-[64px] leading-none"
+        animate={done ? { scale: [1, 1.1, 1] } : {}}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      >
         {count}
         {suffix}
-      </div>
+      </motion.div>
       <div className="font-sans text-black text-[12px] uppercase tracking-[0.15em] mt-2">
         {label}
       </div>

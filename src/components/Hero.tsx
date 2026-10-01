@@ -4,13 +4,17 @@ import { stats } from "../data/content";
 import { useCountUp } from "../hooks/useCountUp";
 
 function StatItem({ value, suffix, label }: { value: number; suffix: string; label: string }) {
-  const { ref, value: count } = useCountUp(value, 1800);
+  const { ref, value: count, done } = useCountUp(value, 1800);
   return (
     <div ref={ref} className="text-left">
-      <div className="font-serif text-gold text-3xl md:text-4xl">
+      <motion.div
+        className="font-serif text-gold text-3xl md:text-4xl"
+        animate={done ? { scale: [1, 1.12, 1] } : {}}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      >
         {count}
         {suffix}
-      </div>
+      </motion.div>
       <div className="font-sans text-[10px] uppercase tracking-[0.2em] text-muted mt-1">
         {label}
       </div>
@@ -20,7 +24,7 @@ function StatItem({ value, suffix, label }: { value: number; suffix: string; lab
 
 export default function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative min-h-screen w-full overflow-hidden">
       <div
         className="ken-burns absolute inset-0 bg-cover bg-center"
         style={{
@@ -36,7 +40,9 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative h-full max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col justify-center">
+      {/* pt-28/pt-36 reserves space for the fixed nav so hero content can
+          never render behind it, at any zoom level or viewport height */}
+      <div className="relative min-h-screen max-w-[1600px] mx-auto px-6 md:px-12 pt-28 md:pt-36 pb-16 flex flex-col justify-center">
         <div className="max-w-[620px] pl-0 md:pl-[2%]">
           <motion.span
             className="label block mb-6"
@@ -127,6 +133,22 @@ export default function Hero() {
             The Adyar Residence
           </h4>
           <p className="font-sans text-[13px] text-muted">Adyar, Chennai</p>
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.3, duration: 0.8 }}
+        >
+          <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/40">
+            Scroll
+          </span>
+          <motion.div
+            className="w-px h-8 bg-gradient-to-b from-gold to-transparent"
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          />
         </motion.div>
       </div>
     </section>

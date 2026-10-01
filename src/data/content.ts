@@ -58,7 +58,7 @@ export const featuredProjects = [
     location: "Ambattur",
     category: "INDUSTRIAL",
     image:
-      "https://images.unsplash.com/photo-1565636192335-23b19a1b1fa2?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80&w=1200&auto=format&fit=crop",
   },
   {
     name: "Interior Design",
@@ -96,7 +96,7 @@ export const carouselSlides = [
     title: "Ambattur Industrial Hub",
     desc: "180,000 sq.ft of precision-engineered manufacturing and logistics space.",
     image:
-      "https://images.unsplash.com/photo-1553413077372-77fb0068e2b7?q=80&w=1800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=1800&auto=format&fit=crop",
   },
   {
     label: "PROJECT 05 / 06",

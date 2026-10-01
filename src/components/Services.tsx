@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Reveal from "./Reveal";
 import { services } from "../data/content";
 
@@ -15,7 +16,11 @@ export default function Services() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.08}>
-              <div className="relative bg-deep border-t-2 border-gold px-9 py-10 h-full hover:bg-surface transition-colors duration-500 overflow-hidden">
+              <motion.div
+                className="relative bg-deep border-t-2 border-gold px-9 py-10 h-full overflow-hidden"
+                whileHover={{ y: -6, backgroundColor: "#1A1A1A" }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              >
                 <span
                   className="absolute top-2 right-4 font-serif text-[72px] leading-none select-none"
                   style={{ color: "rgba(200,169,110,0.15)" }}
@@ -28,7 +33,7 @@ export default function Services() {
                 <p className="text-muted font-light text-[14px] leading-[1.8] relative z-10 max-w-[85%]">
                   {s.desc}
                 </p>
-              </div>
+              </motion.div>
             </Reveal>
           ))}
         </div>

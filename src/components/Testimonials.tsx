@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Reveal from "./Reveal";
 import { testimonials } from "../data/content";
 
@@ -15,7 +16,11 @@ export default function Testimonials() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.1}>
-              <div className="bg-white border border-[#EDE8DF] p-10 h-full flex flex-col">
+              <motion.div
+                className="bg-white border border-[#EDE8DF] p-10 h-full flex flex-col"
+                whileHover={{ y: -6, borderColor: "rgba(200,169,110,0.5)" }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              >
                 <span
                   className="font-serif text-[80px] leading-none mb-2"
                   style={{ color: "rgba(200,169,110,0.2)" }}
@@ -33,7 +38,7 @@ export default function Testimonials() {
                   {t.detail}
                 </p>
                 <span className="text-gold text-sm">★★★★★</span>
-              </div>
+              </motion.div>
             </Reveal>
           ))}
         </div>

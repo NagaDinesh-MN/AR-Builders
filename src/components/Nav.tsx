@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 
 const links = [
   { label: "Home", to: "/" },
@@ -13,6 +13,9 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const location = useLocation();
+
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 30 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -67,6 +70,11 @@ export default function Nav() {
             Menu
           </button>
         </div>
+
+        <motion.div
+          className="absolute bottom-0 left-0 h-[2px] bg-gold origin-left"
+          style={{ scaleX: progress, width: "100%" }}
+        />
       </header>
 
       <AnimatePresence>
